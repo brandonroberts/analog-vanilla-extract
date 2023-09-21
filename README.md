@@ -1,4 +1,6 @@
-# Analog App
+# Analog + Angular + vanilla-extract
+
+This is an example application using Analog + vanilla-extract for CSS.
 
 This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
 

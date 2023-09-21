@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
       vite: {
         transformFilter(_code, id) {
           // skip transforming vanilla-extract css files
-          if (mode === "development" && id.endsWith('css.ts') || id.endsWith('vanilla.js')) {
+          if (id.includes('css.ts') || id.includes('vanilla.js')) {
             return false;
           }
 
