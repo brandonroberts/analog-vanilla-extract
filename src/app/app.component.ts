@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import * as styles from './app.css';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: ` <router-outlet></router-outlet> `,
+  template: `
+    <div class="{{styles.container}}">
+      <router-outlet></router-outlet>
+    </div>
+  `,
   styles: [
     `
       :host {
@@ -17,4 +22,6 @@ import { RouterOutlet } from '@angular/router';
     `,
   ],
 })
-export class AppComponent {}
+export class AppComponent {
+  styles = styles;
+}

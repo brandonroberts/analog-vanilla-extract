@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -12,7 +13,23 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [
+    analog({
+      vite: {
+        transformFilter(_code, id) {
+          // skip transforming vanilla-extract css files
+          if (mode === "development" && id.endsWith('css.ts') || id.endsWith('vanilla.js')) {
+            return false;
+          }
+
+          return true;
+        }
+      }
+    }),
+    vanillaExtractPlugin({
+      emitCssInSsr: true
+    }),
+  ],
   test: {
     globals: true,
     environment: 'jsdom',
